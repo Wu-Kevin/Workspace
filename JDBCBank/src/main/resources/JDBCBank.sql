@@ -11,7 +11,6 @@ CREATE OR REPLACE PROCEDURE add_user (
     username VARCHAR2,
     password VARCHAR2
 ) AS
-
 BEGIN
     INSERT INTO userinformation VALUES (
         userid_generator.NEXTVAL,
@@ -81,7 +80,6 @@ CREATE TABLE transactions
     CONSTRAINT transaction_bankaccountfk FOREIGN KEY ( bankaccount_id )
         REFERENCES bankaccount ( bankaccount_id )
             ON DELETE CASCADE
-);
 
 INSERT INTO userinformation VALUES (
     1,

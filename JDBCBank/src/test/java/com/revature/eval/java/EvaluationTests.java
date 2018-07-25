@@ -21,6 +21,7 @@ import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -34,6 +35,10 @@ import jdbcExceptions.InvalidBankAccountException;
 import jdbcExceptions.NoAccountsException;
 import jdbcExceptions.NoUserException;
 import jdbcExceptions.OverdraftException;
+import com.revature.model.User;
+
+import jdbcExceptions.NoAccountsException;
+import jdbcExceptions.NoUserException;
 
 public class EvaluationTests {
 
@@ -41,6 +46,7 @@ public class EvaluationTests {
 	Connection conn; 
 
 	
+
 	//test 
 	@Test
 	public void checkExistsTrue() throws NoUserException {
@@ -52,14 +58,6 @@ public class EvaluationTests {
 	public void checkExistsFalse() throws NoUserException  {
 		User u = new User (1234, "hello", "worlds!");
 		assertTrue(AccountActions.checkExists(u));
-	}
-	
-	@Test (expected = NoAccountsException.class) 
-	public void deleteAccountNoAccounts() throws NoAccountsException, CannotDeleteException, InvalidBankAccountException  {
-		User u = new User (1234, "hello", "worlds!");
-		Scanner sc = new Scanner(System.in);
-		AccountActions.deleteAccounts(u, sc);
-		sc.close();
 	}
 	
 	@Test (expected = NoAccountsException.class) 
@@ -127,7 +125,15 @@ public class EvaluationTests {
 		AccountActions.updateAccounts(u, sc);
 		sc.close();
 	}
-//	@Test
+
+	
+//	public void basic() {
+//		final String phrase = "Portable Network Graphics";
+//		final String expected = "PNG";
+//		assertEquals(expected, evaluationService.acronym(phrase));
+//	}
+
+	//	@Test
 //	public void trianglesWithNoEqualSidesAreNotEquilateral() {
 //		EvaluationService.Triangle triangle = new EvaluationService.Triangle(5, 4, 6);
 //		assertFalse(triangle.isEquilateral());
