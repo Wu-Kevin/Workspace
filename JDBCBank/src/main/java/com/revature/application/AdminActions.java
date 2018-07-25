@@ -8,6 +8,7 @@ import java.util.Scanner;
 import com.revature.model.User;
 import com.revature.service.UserService;
 
+import jdbcExceptions.ExistingUserException;
 import jdbcExceptions.NoUserException;
 
 public class AdminActions {
@@ -28,9 +29,9 @@ public class AdminActions {
 				i = sc.nextInt();
 			}
 		} catch (InputMismatchException e) {
-			System.err.println("Caught input mismatch error: " + e.getMessage());
+			System.out.println("Caught input mismatch error: " + e.getMessage());
 		} catch (Exception e) {
-			System.err.println("Caught exception: " + e.getMessage());
+			System.out.println("Caught exception: " + e.getMessage());
 		}
 
 		while (i != 5) {
@@ -57,6 +58,8 @@ public class AdminActions {
 					updateUser(sc);
 				} catch (NoUserException e) {
 					System.out.println(e);
+				} catch (ExistingUserException e) {
+					System.out.println(e);
 				}
 				break;
 			}
@@ -73,9 +76,9 @@ public class AdminActions {
 					i = sc.nextInt();
 				}
 			} catch (InputMismatchException e) {
-				System.err.println("Caught input mismatch error: " + e.getMessage());
+				System.out.println("Caught input mismatch error: " + e.getMessage());
 			} catch (Exception e) {
-				System.err.println("Caught exception: " + e.getMessage());
+				System.out.println("Caught exception: " + e.getMessage());
 			}
 		}
 		System.out.println("Thank you for your business!");
@@ -89,7 +92,7 @@ public class AdminActions {
 
 		int i = 1;
 		for (User u : userList) {
-				System.out.println("Account i" + i + ": User ID = #" + u.getUserID()
+				System.out.println("Account " + i + ": User ID = #" + u.getUserID()
 						+ " with username = " + u.getUserName()
 						+ " and password = " + u.getPassword());
 				i++;
@@ -113,7 +116,7 @@ public class AdminActions {
 		// what happens if this user exists in the database?
 		try {
 			AccountActions.checkExists(newUser);
-			System.out.println("\nThis username and password cominbation already exists.");
+			System.out.println("\nThis username already exists.");
 			System.out.println("Returning to menu...");
 			return;
 		} catch (NoUserException e) {
@@ -128,7 +131,7 @@ public class AdminActions {
 
 		int i = 1;
 		for (User u : userList) {
-			System.out.println("Account i" + i + ": User ID = #" + u.getUserID() + " with username = " + u.getUserName()
+			System.out.println("Account " + i + ": User ID = #" + u.getUserID() + " with username = " + u.getUserName()
 					+ " and password = " + u.getPassword());
 			i++;
 		}
@@ -150,13 +153,14 @@ public class AdminActions {
 		throw new NoUserException("\nUser ID #" + input + " was not found. Returning to menu...");
 	}
 
-	public static void updateUser(Scanner sc) throws NoUserException {
+	public static void updateUser(Scanner sc) throws NoUserException, ExistingUserException {
 		
+		//TO DO: update foreign keys for user ID update
 		List<User> userList = UserService.getUserService().allUsers();
-
+		boolean check = false;
 		int i = 1;
 		for (User u : userList) {
-			System.out.println("Account i" + i + ": User ID = #" + u.getUserID() + " with username = " + u.getUserName()
+			System.out.println("Account " + i + ": User ID = #" + u.getUserID() + " with username = " + u.getUserName()
 					+ " and password = " + u.getPassword());
 			i++;
 		}
@@ -164,10 +168,10 @@ public class AdminActions {
 		System.out.println(
 				"\nWhich user would you like to edit? Please enter the corresponding User ID");
 		int input = sc.nextInt();
-
 		
 		for (User u : userList) {
 			if (u.getUserID() == input) {
+				check = true;
 				System.out.println("\nWhat would you like to do?");
 				System.out.println("(1) Edit userID");
 				System.out.println("(2) Edit username");
@@ -185,41 +189,54 @@ public class AdminActions {
 					case 1:
 						System.out.println("\nEnter the new User ID");
 						int changeID = sc.nextInt();
+						
+						for (User us : userList) {
+							if (us.getUserID() == changeID) {
+								throw new ExistingUserException(
+										"\nUser ID already exists in database. Returning to menu...");
+							}
+						}
 						u.setUserID(changeID);
 						UserService.getUserService().updateUser(input, u.getUserID(), u.getUserName(), u.getPassword());
 						System.out.println("\nUser ID has been successfully updated");
 						break;
-						//cannot be an existing userID IMPLEMENT
 					case 2:
 						System.out.println("\nEnter the new Username ");
 						String changeUserName = sc.next();
+						
+						for (User us : userList) {
+							if (us.getUserName().equals(changeUserName)) {
+								throw new ExistingUserException(
+										"\nUsername already exists in database. Returning to menu...");
+							}
+						}
 						u.setUserName(changeUserName);
 						UserService.getUserService().updateUser(input, u.getUserID(), u.getUserName(), u.getPassword());
-						System.out.println("\nUser ID has been successfully updated");
+						System.out.println("\nUsername has been successfully updated");
 						break;
-						//cannot be an existing username IMPLEMENT
 					case 3:
 						System.out.println("\nEnter the new Password ");
 						String changePassword = sc.next();
 						u.setPassword(changePassword);
 						UserService.getUserService().updateUser(input, u.getUserID(), u.getUserName(), u.getPassword());
-						System.out.println("\nUser ID has been successfully updated");
+						System.out.println("\nPassword has been successfully updated");
 						break;
 
 					case 4:
 						return;
 					}
 				} catch (InputMismatchException e) {
-					System.err.println("Caught input mismatch error: " + e.getMessage());
+					System.out.println("Caught input mismatch error: " + e.getMessage());
 				} catch (Exception e) {
-					System.err.println("Caught exception: " + e.getMessage());
+					System.out.println("Caught exception: " + e.getMessage());
 				}
 
 
 			}
-			else {
-				throw new NoUserException("\nUser ID #" + input + " not found. Returning to menu...");
-			}
+
+		}
+		if (check == false) {
+			throw new NoUserException("\nUser ID #" + input + " not found. Returning to menu...");
 		}
 		
 	}

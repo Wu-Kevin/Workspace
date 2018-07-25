@@ -270,7 +270,7 @@ public class AccountActions {
 		for (Account a : accountList) {
 			if (a.getUserID() == loginUser.getUserID()) {
 				System.out.println("Account #" + i + ": Bank Account ID = #" + a.getBankAccountID()
-						+ " with current funds = " + a.getAccountStatus());
+						+ " with current balance of $" + a.getAccountStatus());
 				i++;
 			}
 		}
@@ -296,7 +296,7 @@ public class AccountActions {
 		for (Account a : accountList) {
 			if (a.getUserID() == loginUser.getUserID()) {
 				System.out.println("Account #" + i + ": Bank Account ID = #" + a.getBankAccountID()
-						+ " with current funds = " + a.getAccountStatus());
+						+ " with current balance of $" + a.getAccountStatus());
 				i++;
 			}
 		}
@@ -313,7 +313,7 @@ public class AccountActions {
 			if (a.getBankAccountID() == input && a.getUserID() == loginUser.getUserID()) {
 				
 				if (a.getAccountStatus() != 0) {
-					throw new CannotDeleteException ("\nThe current funds in this account must be 0 to delete this account. Returning to menu...");
+					throw new CannotDeleteException ("\nThe current balance in this account must be 0 to delete this account. Returning to menu...");
 				} else {
 					AccountService.getActService().deleteAct(a.getBankAccountID());
 					System.out.println("Bank Account ID #" + a.getBankAccountID() + " has been deleted");
@@ -332,7 +332,7 @@ public class AccountActions {
 		for (Account a : accountList) {
 			if (a.getUserID() == loginUser.getUserID()) {
 				System.out.println("Account #" + i + ": Bank Account ID = #" + a.getBankAccountID()
-						+ " with current funds = " + a.getAccountStatus());
+						+ " with current balance of $" + a.getAccountStatus());
 				i++;
 			}
 		}
@@ -346,7 +346,7 @@ public class AccountActions {
 		double change = 0.0;
 
 		for (Account a : accountList) {
-			if (a.getBankAccountID() == input) {
+			if (a.getBankAccountID() == input && a.getUserID() == loginUser.getUserID()) {
 				System.out.println("\nWhat would you like to do?");
 				System.out.println("(1) Deposit");
 				System.out.println("(2) Withdraw");
@@ -418,14 +418,16 @@ public class AccountActions {
 		
 		List<Transaction> transactionList = TransactionService.getTransService().allTransactions();
 		List<Account> accountList = checkAccounts();
-		List<Integer> checkAccount = new ArrayList<Integer>();
+		int checkID = 0;
+		List<Integer> bankAccountIDList = new ArrayList<Integer>();
 
 		int i = 1;
 		for (Account a : accountList) {
 			if (a.getUserID() == loginUser.getUserID()) {
 				System.out.println("Account #" + i + ": Bank Account ID = #" + a.getBankAccountID()
-						+ " with current funds = " + a.getAccountStatus());
-				checkAccount.add(a.getBankAccountID());
+						+ " with current balance of $" + a.getAccountStatus());
+				bankAccountIDList.add(a.getBankAccountID());
+				checkID = a.getUserID();
 				i++;
 			}
 		}
@@ -438,13 +440,13 @@ public class AccountActions {
 	System.out.println("Please enter the corresponding Bank Account ID");
 	int input = sc.nextInt();
 	
-	if (checkAccount.contains(input) == false) {
+	if (bankAccountIDList.contains(input) == false) {
 		throw new InvalidBankAccountException("\nBank Account ID #" + input + " was not found. Returning to menu...");
 	}
 
 	i = 1;
 	for (Transaction t : transactionList) {
-		if (t.getBankaccount_id() == input && checkAccount.contains(loginUser.getUserID()) == true) {
+		if (t.getBankaccount_id() == input && checkID == loginUser.getUserID()) {
 				System.out.println("Transaction #" + i +
 						" || Transaction Account ID #" + t.getTransaction_id() + 
 						" || Transaction Type: " + t.getTransaction_type() +
