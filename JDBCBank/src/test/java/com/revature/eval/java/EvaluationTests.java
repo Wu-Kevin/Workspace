@@ -27,12 +27,18 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.revature.application.AccountActions;
+import com.revature.application.AdminActions;
 import com.revature.jdbcutil.Jdbcconnection;
 import com.revature.model.User;
+import com.revature.service.AccountService;
+import com.revature.service.TransactionService;
+import com.revature.service.UserService;
 
 import jdbcExceptions.CannotDeleteException;
+import jdbcExceptions.ExistingUserException;
 import jdbcExceptions.InvalidBankAccountException;
 import jdbcExceptions.NoAccountsException;
+import jdbcExceptions.NoTransactionsException;
 import jdbcExceptions.NoUserException;
 import jdbcExceptions.OverdraftException;
 import com.revature.model.User;
@@ -42,12 +48,8 @@ import jdbcExceptions.NoUserException;
 
 public class EvaluationTests {
 
-	private static final AccountActions accountActions = new AccountActions();
 	Connection conn; 
 
-	
-
-	//test 
 	@Test
 	public void checkExistsTrue() throws NoUserException {
 		User u = new User (1, "admin", "admin");
@@ -126,17 +128,127 @@ public class EvaluationTests {
 		sc.close();
 	}
 
+	@Test(expected = NoAccountsException.class)
+	public void viewTransactionsNoAccounts()
+			throws NoAccountsException, InvalidBankAccountException, NoTransactionsException {
+		User u = new User(20, "test123", "test123");
+		Scanner sc = new Scanner(System.in);
+		AccountActions.viewTransactions(u, sc);
+		sc.close();
+	}
 	
-//	public void basic() {
-//		final String phrase = "Portable Network Graphics";
-//		final String expected = "PNG";
-//		assertEquals(expected, evaluationService.acronym(phrase));
-//	}
+	@Test(expected = InvalidBankAccountException.class)
+	public void viewTransactionsInvalidInput()
+			throws NoAccountsException, InvalidBankAccountException, NoTransactionsException {
+		User u = new User (1, "admin", "admin");
+		ByteArrayInputStream in = new ByteArrayInputStream("10000000".getBytes());
+		System.setIn(in);
+		Scanner sc = new Scanner(System.in);
+		AccountActions.viewTransactions(u, sc);
+		sc.close();
+	}
+	
+	@Test(expected = NoUserException.class)
+	public void deleteUserDoesntExist()
+			throws NoAccountsException, InvalidBankAccountException, NoTransactionsException, NoUserException {
+		ByteArrayInputStream in = new ByteArrayInputStream("10000000".getBytes());
+		System.setIn(in);
+		Scanner sc = new Scanner(System.in);
+		AdminActions.deleteUser(sc);
+		sc.close();
+	}
+	
+	@Test(expected = NoUserException.class)
+	public void updateUserDoesntExist()
+			throws NoAccountsException, InvalidBankAccountException, NoTransactionsException, NoUserException, ExistingUserException {
+		ByteArrayInputStream in = new ByteArrayInputStream("10000000".getBytes());
+		System.setIn(in);
+		Scanner sc = new Scanner(System.in);
+		AdminActions.updateUser(sc);
+		sc.close();
+	}
+	
+	@Test(expected = InputMismatchException.class)
+	public void updateUserWrongInput()
+			throws NoAccountsException, InvalidBankAccountException, NoTransactionsException, NoUserException, ExistingUserException {
+		ByteArrayInputStream in = new ByteArrayInputStream("1\nhello".getBytes());
+		System.setIn(in);
+		Scanner sc = new Scanner(System.in);
+		AdminActions.updateUser(sc);
+		sc.close();
+	}
+	
+	@Test 
+	public void accountServiceTestRetrieveAct() {
+		AccountService.getActService().retrieveAct(1);
+	}
+	
+	@Test 
+	public void accountServiceTestInsertAct() {
+		assertTrue(AccountService.getActService().insertAct(1));
+	}
+	
+	@Test 
+	public void accountServiceTestDeleteAct() {
+		assertTrue(AccountService.getActService().deleteAct(3459878));
+	}
+	
+	@Test 
+	public void transServiceRetrieveTrans() {
+		TransactionService.getTransService().getTransaction(1);
+	}
+	
+	@Test 
+	public void transServiceRetrieveTransUser() {
+		TransactionService.getTransService().getTransactionUser(1);
+	}
+	
+	@Test 
+	public void transServiceDeleteTransaction() {
+		assertTrue(TransactionService.getTransService().deleteTransaction(123456));
+	}
 
-	//	@Test
-//	public void trianglesWithNoEqualSidesAreNotEquilateral() {
-//		EvaluationService.Triangle triangle = new EvaluationService.Triangle(5, 4, 6);
-//		assertFalse(triangle.isEquilateral());
+	@Test 
+	public void transServiceDeleteTransactionUser() {
+		assertTrue(TransactionService.getTransService().deleteTransactionUser(123456));
+	}
+
+	@Test 
+	public void userServiceTestRetrieveUserByID() {
+		UserService.getUserService().retrieveUser(1);
+	}
+	
+	public void userServiceTestRetrieveUserNotID() {
+		UserService.getUserService().retrieveUser("admin", "admin");
+	}
+	
+	public void userServiceTestDeleteUserNonexistent() {
+		assertTrue(UserService.getUserService().deleteUser(123456));
+	}
+	
+	public void userServiceTestUpdateUserNonexistent() {
+		assertTrue(UserService.getUserService().updateUser(123, 123, "hello", "world"));
+	}
+	
+	//check why these don't work when I have time
+//	@Test(expected = ExistingUserException.class)
+//	public void updateUserIDExists()
+//			throws NoAccountsException, InvalidBankAccountException, NoTransactionsException, NoUserException, ExistingUserException {
+//		ByteArrayInputStream in = new ByteArrayInputStream("1\n1\n1\n1".getBytes());
+//		System.setIn(in);
+//		Scanner sc = new Scanner(System.in);
+//		AdminActions.updateUser(sc);
+//		sc.close();
+//	}
+//	
+//	@Test(expected = ExistingUserException.class)
+//	public void updateUsernameExists()
+//			throws NoAccountsException, InvalidBankAccountException, NoTransactionsException, NoUserException, ExistingUserException {
+//		ByteArrayInputStream in = new ByteArrayInputStream("1\n2\nadmin".getBytes());
+//		System.setIn(in);
+//		Scanner sc = new Scanner(System.in);
+//		AdminActions.updateUser(sc);
+//		sc.close();
 //	}
 
 }

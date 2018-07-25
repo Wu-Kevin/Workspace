@@ -1,6 +1,3 @@
-CUSTOM EXCEPTIONS
-JUNIT TESTINTG
-
 CREATE SEQUENCE userid_generator MINVALUE 0 START WITH 100 INCREMENT BY 1;
 
 CREATE SEQUENCE accountid_generator MINVALUE 0 START WITH 1000 INCREMENT BY 1;
@@ -33,11 +30,11 @@ BEGIN
 END;
 
 CREATE OR REPLACE PROCEDURE add_transaction (
-    transaction_type varchar2,
-    transaction_amount NUMBER,
-    start_amount number,
-    end_amount number,
-    bankid NUMBER
+    transaction_type     VARCHAR2,
+    transaction_amount   NUMBER,
+    start_amount         NUMBER,
+    end_amount           NUMBER,
+    bankid               NUMBER
 ) AS
 BEGIN
     INSERT INTO transactions VALUES (
@@ -48,9 +45,10 @@ BEGIN
         end_amount,
         bankid
     );
+
 END;
 
-create table userinformation (        
+CREATE TABLE userinformation (
     user_id    NUMBER(10) NOT NULL,
     username   VARCHAR2(200) NOT NULL,
     password   VARCHAR2(200) NOT NULL,
@@ -58,18 +56,17 @@ create table userinformation (
     CONSTRAINT constraint_name_unique UNIQUE ( username )
 );
 
-create table bankAccount (
-    bankaccount_id number(10) not null,
-    user_id number(10) not null,
-    account number(10) check (account >=0 ),
-    primary key (bankaccount_id),
-    constraint bankAccount_userInformationFK foreign key (user_id) 
-    references userInformation(user_id) on delete cascade
-    );
+CREATE TABLE bankaccount (
+    bankaccount_id   NUMBER(10) NOT NULL,
+    user_id          NUMBER(10) NOT NULL,
+    account          DECIMAL(10,2) CHECK ( account >= 0 ),
+    PRIMARY KEY ( bankaccount_id ),
+    CONSTRAINT bankaccount_userinformationfk FOREIGN KEY ( user_id )
+        REFERENCES userinformation ( user_id )
+            ON DELETE CASCADE
+);
 
-CREATE TABLE transactions
-
-(
+CREATE TABLE transactions (
     transaction_id       NUMBER(10) NOT NULL,
     transaction_type     VARCHAR2(200) NOT NULL,
     transaction_amount   DECIMAL(10,2) CHECK ( transaction_amount >= 0 ),
@@ -80,6 +77,7 @@ CREATE TABLE transactions
     CONSTRAINT transaction_bankaccountfk FOREIGN KEY ( bankaccount_id )
         REFERENCES bankaccount ( bankaccount_id )
             ON DELETE CASCADE
+);
 
 INSERT INTO userinformation VALUES (
     1,
@@ -87,24 +85,12 @@ INSERT INTO userinformation VALUES (
     'admin'
 );
 
+INSERT INTO bankaccount VALUES (
+    1,
+    1,
+    5
+);
 
+CALL add_transaction('deposit',1,5,6,1);
 
-delete from userinformation where user_id = 1;
-SELECT
-    *
-FROM
-    userinformation;
-
-SELECT
-    *
-FROM
-    bankaccount
-    order by bankaccount_id asc;
-
-SELECT
-    *
-FROM
-    transactions;
-
-update userinformation set user_id = 1, username = 'admin', password = 'admin'  where user_id = 2;
 COMMIT;
