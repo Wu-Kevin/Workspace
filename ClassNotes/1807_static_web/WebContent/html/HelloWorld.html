@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome to HTML</title>
+<!-- <style>
+	/* these are in-line CSS commands */
+	/* comment style must be like this since within style */
+	/* element selector */
+	ol {
+		color: yellow;
+	}
+	
+	/* attribute selector */
+	#green{
+		font-family: cursive;
+		font-size: 20;
+	}
+	
+	p {
+		background: aqua;
+		text-align: center;
+		
+	}
+	
+	td {
+		border-top-width: 100px;
+	}
+</style> -->
+
+<!-- Link tags are self closing and must be included in the head. This link is for bootstrap -->
+<!--  <link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"> 
+	-->
+	
+	<link rel="stylesheet" type="text/css" href="../css/helloWorldCss.css">
+</head>
+
+
+<body>
+	<p>This content is displayed from HelloWorld.html</p>
+	<div>
+		<a href="https://www.google.com">Click here to search</a>
+	</div>
+	<header>
+		<div>
+			<div>
+				<div>
+					<h1>Heading</h1>
+					<h2>Heading</h2>
+					<h3 id = "green">Heading</h3> <!-- EXAMPLE OF ATTRIBUTE SELECTOR, SEE STYLE -->
+					<h4 style ="font-family: fantasy;">Heading</h4> <!--  EXAMPLE OF AN INLINE CSS STYLE -->
+					<h5>Heading</h5>
+					<h6>Heading</h6>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<hr>
+	<section>
+		<div>
+			<h4>Movies</h4>
+			<ol>
+				<li>Incredibles</li>
+				<li>Shrek</li>
+			</ol>
+
+			<h4>Shows</h4>
+			<ul>
+				<li>Stranger things</li>
+				<li>Pokemon</li>
+				<li>Shield</li>
+				<li>Defenders</li>
+			</ul>
+		</div>
+
+		<div>
+			<table border="1">
+				<tr>
+					<td>One</td>
+					<td>Two</td>
+					<td>Three</td>
+				</tr>
+				<tr>
+					<td>Value1</td>
+					<td>Value2</td>
+					<td>Value3</td>
+				</tr>
+			</table>
+		</div>
+
+		<hr>
+		<div>
+			<h3>What is Lorem Ipsum?</h3>
+			<p>Lorem Ipsum is simply dummy text of the printing and
+				typesetting industry. Lorem Ipsum has been the industry's standard
+				dummy text ever since the 1500s, when an unknown printer took a
+				galley of type and scrambled it to make a type specimen book. It has
+				survived not only five centuries, but also the leap into electronic
+				typesetting, remaining essentially unchanged. It was popularised in
+				the 1960s with the release of Letraset sheets containing Lorem Ipsum
+				passages, and more recently with desktop publishing software like
+				Aldus PageMaker including versions of Lorem Ipsum.</p>
+		</div>
+
+		<div>
+			<form>
+				<input placeholder="Enter your first name" type="text" id="first" />
+				<input placeholder="Enter your last name" type="text" id="second" />
+				<input type="checkbox" type="text" id="third" /> HELLO WORLD <select
+					name="color">
+					<option>Red</option>
+					<option>Blue</option>
+					<option>Green</option>
+				</select>
+
+				<button type="button" value="Submit">Submit</button>
+				<button type="button" value="Clear">Clear</button>
+			</form>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+	<div class=navbar></div>
+
+	<div class=navbar-header></div>
+
+	<a class=navbar-brand> </a>
+
+	<ul class="nav navbar-nav">
+		<li>hello</li>
+		<li>world</li>
+	</ul>
+
+	<ol class="breadcrumb">
+		<a href="https://www.youtube.com"> Visit Youtube </a>
+	</ol>
+
+</body>
+</html>

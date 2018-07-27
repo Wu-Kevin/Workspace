@@ -1,0 +1,21 @@
+<style>
+	ol {
+		color: yellow;
+	}
+	
+	
+	#green{
+		font-family: cursive;
+		font-size: 20;
+	}
+	
+	p {
+		background: aqua;
+		text-align: center;
+		
+	}
+	
+	td {
+		border-top-width: 100px;
+	}
+</style>

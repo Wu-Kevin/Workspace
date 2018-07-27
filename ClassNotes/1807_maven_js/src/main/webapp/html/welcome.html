@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome to servlets</title>
+</head>
+
+<body>
+	<div> <p> This is a form to test get method </p>
+		<form action='get.do' method='get'> <!--  this is sent to the web.xml file and looks for this file *.do url -->
+			<input name='text1' type='text' placeholder='Enter your name'>
+			<input name='ssn' type='text' placeholder='ssn'> <input
+				type='submit' value='go'>
+		</form>
+
+<p> This is a form to test post method </p>
+		<form action='post.do' method='post'> <!--  less efficient but the information is not posted on the url -->
+			<input name='text1' type='text' placeholder='Enter your name'>
+			<input name='ssn' type='text' placeholder='ssn'> <input
+				type='submit' value='go'>
+		</form>
+	</div>
+</body>
+</html>
