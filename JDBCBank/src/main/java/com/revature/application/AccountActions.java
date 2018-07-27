@@ -407,7 +407,7 @@ public class AccountActions {
 						System.err.println("Caught exception: " + e.getMessage());
 					}
 				}
-
+				return; 
 			}
 		}
 		throw new InvalidBankAccountException("\nNo bank account matches Bank Account ID #" + input);
