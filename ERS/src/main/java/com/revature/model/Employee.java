@@ -8,6 +8,27 @@ public class Employee {
 	private String email;
 	private int ismanager;
 
+	
+	public Employee() {
+		super();
+		this.employeeId = 0;
+		this.password = "";
+		this.firstname = "";
+		this.lastname = "";
+		this.email = "";
+		this.ismanager = 0;
+	}
+
+	public Employee(int employeeId, String password, String firstname, String lastname, String email, int ismanager) {
+		super();
+		this.employeeId = employeeId;
+		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.ismanager = ismanager;
+	}
+
 	public Employee(String password, String firstname, String lastname, String email, int ismanager) {
 		super();
 		this.password = password;

@@ -47,8 +47,29 @@ public class EmployeeDaoJdbc implements EmployeeDao{
 
 	@Override
 	public Employee select(Employee employee) {
-		// TODO Auto-generated method stub
-		return null;
+		try (Connection conn = ConnectionUtil.getConnection()){
+			String sql = "SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID = ? AND PASSWORD = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, employee.getEmployeeId());
+			ps.setString(2, employee.getPassword());
+			
+			ResultSet result = ps.executeQuery();
+
+			while(result.next()) {
+				return new Employee(
+						result.getInt("EMPLOYEE_ID"),
+						result.getString("PASSWORD"),
+						result.getString("FIRSTNAME"),
+						result.getString("LASTNAME"),
+						result.getString("EMAIL"),
+						result.getInt("MANAGER")
+						);
+			}
+		} catch (SQLException e) {
+			LogUtil.logger.warn("Exception finding an existing user", e);
+
+		}
+		return new Employee();
 	}
 
 
