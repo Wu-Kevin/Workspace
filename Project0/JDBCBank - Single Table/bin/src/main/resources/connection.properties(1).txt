@@ -1,3 +1,0 @@
-jdbc.url = jdbc:oracle:thin:@wudb.cpmpgeabndob.us-east-1.rds.amazonaws.com:1521:ORCL
-jdbc.username = kevin
-jdbc.password = 52790Zsnxu
