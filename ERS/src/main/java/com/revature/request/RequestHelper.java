@@ -13,6 +13,7 @@ public class RequestHelper {
 	public static String process(HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException {
 		switch(request.getRequestURI()) {
 		case "/ERS/html/login.do":
+			
 			return LoginController.login(request);
 		case "/ERS/html/home.do":
 			return HomeController.home(request);

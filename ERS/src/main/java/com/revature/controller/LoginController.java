@@ -16,7 +16,6 @@ public class LoginController {
 		
 		//POST logic
 		//i have userid and password
-		
 		Employee loggedEmployee = new Employee();
 		
 		loggedEmployee.setEmployeeId(Integer.parseInt(request.getParameter("userid")));

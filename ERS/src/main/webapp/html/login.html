@@ -4,13 +4,25 @@
 <meta charset="ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 </head>
 <body>
-<body>
 	<form method="POST" action="login.do">
-		<input placeholder="User ID: Numeric" name="userid" inputmode="numeric" minlength="4" pattern = "[0-9]+" required/> 
-		<input placeholder="Password" type="password" name="password" required/>
-		<input type="submit" value="Login" />
+		<br>
+		<div class = "col-xs-4">
+		<label>Employee ID</label> 
+		<input class = "form-control" placeholder="Numeric Values Only" name="userid" pattern = "[0-9]+" required/> 
+		<small class="form-text text-muted">Do not enter e-mail or other forms of identification</small>
+		<br><br>
+		<label>Password</label>
+		<input class = "form-control" placeholder="Password" type="password" name="password" required/>
+		<br><input style = "background-color: black" type="submit" class = "btn btn-primary" value="Login" />
+		</div>
 	</form>
 </body>
 </html>
