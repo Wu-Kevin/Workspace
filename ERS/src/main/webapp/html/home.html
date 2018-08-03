@@ -26,13 +26,12 @@ update information -->
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="#home">Home</a></li>
-					<li><a href="#">Submit Reimbursement Request</a></li>
-					<li><a href="#">View Reimbursements</a></li>
+					<li><a href="#reimbursements">View Reimbursements</a></li>
 					<li><a href="#singleEmployee">View Personal Information</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span>
-							Logout</a></li>
+					<li><a onclick="logOut()"><span
+							class="glyphicon glyphicon-log-in"> </span> Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -70,7 +69,48 @@ update information -->
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
 					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
 					aliquip ex ea commodo consequat.</p>
-				<a id="singleEmployee"></a>
+
+				<br> <br> <br> <br> <br> <br> <a
+					id="reimbursements"></a>
+				<h1>Reimbursement Information</h1>
+				<table id="reimbursementTable"
+					class="table table-hover table-bordered">
+					<thead>
+						<tr style="text-align: center">
+							<th>Reimbursement ID</th>
+							<th>Request Amount</th>
+							<th>Rationale</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+				</table>
+				
+					<button id="showReim" style="background-color: black"
+						class="btn btn-primary">Show Reimbursements</button>
+				<hr>
+				<div id = "showReimForm" style = "display: none">
+				<div class="col-xs-4">
+					<label for="request">$ Request</label> <input type="text"
+						class="form-control" placeholder="Amount $" id="ReimAmount"
+						pattern="[0-9]+" required /> <small class="form-text text-muted">Numeric
+						Values</small>
+				</div>
+				<div class="col-xs-4">
+					<label for="rationale">Rationale</label> <input type="text"
+						class="form-control" placeholder="Reasoning" id="ReimRationale"
+						required /> <small class="form-text text-muted">Limit
+						1000 characters</small>
+				</div>
+				<div class="col-xs-4">
+					<label for="submitReim">Submit </label><button id="insertReim"
+						style="background-color: black"
+						class="btn btn-primary">Add Reimbursement</button>
+				</div>
+				</div>
+
+
+				<br> <br> <br> <br> <br> <br> <a
+					id="singleEmployee"></a>
 				<h1>Employee Information</h1>
 				<table id="employeeTable" class="table table-hover table-bordered">
 					<thead>
@@ -83,10 +123,11 @@ update information -->
 						</tr>
 					</thead>
 				</table>
-				<button id = "listEmployees" style= "background-color: black" 
-				class="btn btn-primary" onclick="showForm()">Show Personal Information</button>
-					
-				<div style = "display: none" id="HEADdiv" class="dropdown">
+				<button id="listEmployees" style="background-color: black"
+					class="btn btn-primary" onclick="showForm()">Show Personal
+					Information</button>
+
+				<div style="display: none" id="HEADdiv" class="dropdown">
 					<button style="background-color: black" type="button"
 						class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 						Update Information</button>
@@ -108,42 +149,33 @@ update information -->
 				</div>
 				<div style="display: none" id="FNdiv">
 					<br> <input type="text" class="form-control"
-						placeholder="New First Name" id="FNform" required /> <br> 
-						<button	id="FNsubmit" style="background-color: black"
+						placeholder="New First Name" id="FNform" required /> <br>
+					<button id="FNsubmit" style="background-color: black"
 						class="btn btn-primary">Update First Name</button>
 				</div>
 				<div style="display: none" id="LNdiv">
 					<br> <input type="text" class="form-control"
-						placeholder="New Last Name" id="LNform" required /> <br> 
-						<button	id="LNsubmit" style="background-color: black"
+						placeholder="New Last Name" id="LNform" required /> <br>
+					<button id="LNsubmit" style="background-color: black"
 						class="btn btn-primary">Update Last Name</button>
 				</div>
 				<div style="display: none" id="EMdiv">
 					<br> <input type="text" class="form-control"
-						placeholder="New E-mail" id="EMform" required /> <br> 
-						<button	id="EMsubmit" style="background-color: black"
+						placeholder="New E-mail" id="EMform" required /> <br>
+					<button id="EMsubmit" style="background-color: black"
 						class="btn btn-primary">Update E-mail</button>
 				</div>
 				<div style="display: none" id="PWdiv">
 					<br> <input type="text" class="form-control"
-						placeholder="New Password" id="PWform" required /> <br> 
-						<button	id="PWsubmit" style="background-color: black"
+						placeholder="New Password" id="PWform" required /> <br>
+					<button id="PWsubmit" style="background-color: black"
 						class="btn btn-primary">Update Password</button>
-				</div> 
+				</div>
 
 			</div>
 			<div class="col-sm-2 sidenav"></div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
 
 	<footer class="container-fluid text-center">
 		<p>Kevin Wu 2018</p>
@@ -155,7 +187,7 @@ and which manager resolved, view all employees, view reimbursement requests from
 	<script type="text/javascript" src="../js/appendTable.js"></script>
 	<script type="text/javascript" src="../js/showForms.js"></script>
 	<script type="text/javascript" src="../js/updateEmployee.js"></script>
-	
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

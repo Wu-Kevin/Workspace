@@ -3,7 +3,9 @@ package com.revature.ajax;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.controller.InsertReimbursementController;
 import com.revature.controller.ListController;
+import com.revature.controller.ReimbursementListController;
 import com.revature.controller.UpdateEmployeeController;
 import com.revature.util.FinalUtil;
 
@@ -26,6 +28,12 @@ public class RequestHelper {
 		case "/ERS/html/updateEmployeePW.ajax":
 			return UpdateEmployeeController.updateEmployeePW(request, response);
 		
+		case "/ERS/html/listReimbursements.ajax":
+			return ReimbursementListController.listReimbursement(request, response);
+		
+		case "/ERS/html/insertReimbursement.ajax":
+			return InsertReimbursementController.insertReimbursement(request, response);
+			
 		default:
 			return new AjaxMessage(FinalUtil.NOT_IMPLEMENTED);
 		}

@@ -1,3 +1,12 @@
+function showNewReim() {
+    let x = document.getElementById("insertReim");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
 function showForm() {
     let x = document.getElementById("HEADdiv");
     if (x.style.display === "none") {
@@ -42,3 +51,4 @@ function showFormEM() {
         x.style.display = "none";
     }
 }
+
