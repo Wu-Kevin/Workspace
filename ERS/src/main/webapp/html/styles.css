@@ -1,4 +1,11 @@
   <style>
+    
+ .login {
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+}
+    
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;

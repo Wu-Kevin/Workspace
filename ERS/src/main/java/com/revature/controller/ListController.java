@@ -2,11 +2,8 @@ package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.revature.ajax.AjaxMessage;
 import com.revature.model.Employee;
 import com.revature.service.EmployeeService;
-import com.revature.util.FinalUtil;
 
 public class ListController {
 
@@ -16,8 +13,8 @@ public class ListController {
 		if (loggedEmployee.getIsmanager() == 0) {
 			return EmployeeService.getEmployeeService().loginEmployee(loggedEmployee);
 		}
-		else { //NEED TO IMPLEMENT LIST RETURN
-			return new AjaxMessage(FinalUtil.USERNAME_AVAILABLE);
+		else { 
+			return EmployeeService.getEmployeeService().listEmployees();
 		}
 	}
 }

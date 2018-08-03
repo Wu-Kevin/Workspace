@@ -10,6 +10,4 @@ public interface EmployeeDao {
 	public Employee select(Employee employee);
 
 	public List<Employee> selectAll();
-
-	public String getCustomerHash(Employee employee);
 }

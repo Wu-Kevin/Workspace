@@ -75,16 +75,31 @@ public class EmployeeDaoJdbc implements EmployeeDao{
 
 	@Override
 	public List<Employee> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "SELECT * FROM EMPLOYEES ORDER BY EMPLOYEE_ID";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery();
+
+			List<Employee> customerList = new ArrayList<>();
+			while(rs.next()) {
+				customerList.add(new Employee(
+						rs.getInt("EMPLOYEE_ID"),
+						rs.getString("PASSWORD"),
+						rs.getString("FIRSTNAME"),
+						rs.getString("LASTNAME"),
+						rs.getString("EMAIL"),
+						rs.getInt("MANAGER")
+						));
+			}
+
+			return customerList;
+		} catch (SQLException e) {
+			LogUtil.logger.warn("Exception selecting all customers", e);
+		} 
+		return new ArrayList<>();
 	}
 
-
-	@Override
-	public String getCustomerHash(Employee employee) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	

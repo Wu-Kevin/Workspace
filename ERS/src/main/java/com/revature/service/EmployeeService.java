@@ -26,4 +26,8 @@ public class EmployeeService {
 	public Employee loginEmployee(Employee employee) {
 		return EmployeeDaoJdbc.getEmployeeDaoJdbc().select(employee);
 	}
+	
+	public List<Employee> listEmployees() {
+		return EmployeeDaoJdbc.getEmployeeDaoJdbc().selectAll();
+	}
 }
