@@ -18,7 +18,9 @@
 
 <!-- logout, submit reimburse req, view pending, view resolved, view information
 update information -->
+
 <body>
+
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="collapse navbar-collapse" id="myNavbar">
@@ -37,113 +39,100 @@ update information -->
 	</nav>
 
 	<div class="container-fluid text-center">
-		<a id="home"></a>
-		<h1>Welcome</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-			ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-			aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat
-			non proident, sunt in culpa qui officia deserunt mollit anim id est
-			laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt
-			ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-			nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-			enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-			ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat
-			non proident, sunt in culpa qui officia deserunt mollit anim id est
-			laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt
-			ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-			nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-			enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-			ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat
-			non proident, sunt in culpa qui officia deserunt mollit anim id est
-			laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt
-			ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-			nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat.</p>
-	</div>
-
-	<div class="container-fluid text-center">
-		<a id="singleEmployee"></a>
-		<h1>Employee Information</h1>
-		<table id="employeeTable" class="table table-hover table-bordered">
-			<thead>
-				<tr style="text-align: center">
-					<th>Employee ID</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<th>Password</th>
-				</tr>
-			</thead>
-		</table>
-
-		<div>
-			<input onclick="showForm()" style="background-color: black"
-				type="button" value="Show Personal Information" id="listEmployees"
-				class="btn btn-primary" />
-
-			<div style="display: none" id="HEADdiv" class="dropdown">
-				<button style="background-color: black" type="button"
-					class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					Update Information</button>
-				<div style="background-color: black" class="dropdown-menu"
-					aria-labelledby="dropdownMenuButton">
-					<a onclick="showFormFN()"
-						style="background-color: black; color: white"
-						class="dropdown-item" id=changefirstname> Update First Name</a><br>
-					<a onclick="showFormLN()" style="background-color: black; color: white"
-						class="dropdown-item" id=changelastname> Update Last Name</a><br>
-					<a onclick="showFormEM()" style="background-color: black; color: white"
-						class="dropdown-item" id=changeemail> Update E-mail</a><br> 
+		<div class="row content">
+			<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-8 text-center">
+				<a id="home"></a>
+				<h1>Welcome</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+					enim ad minim veniam, quis nostrud exercitation ullamco laboris
+					nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat
+					cupidatat non proident, sunt in culpa qui officia deserunt mollit
+					anim id est laborum consectetur adipiscing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+					aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+					nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Excepteur sint occaecat cupidatat non proident, sunt in
+					culpa qui officia deserunt mollit anim id est laborum consectetur
+					adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+					dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+					exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+					nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat
+					cupidatat non proident, sunt in culpa qui officia deserunt mollit
+					anim id est laborum consectetur adipiscing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+					aliquip ex ea commodo consequat.</p>
+				<a id="singleEmployee"></a>
+				<h1>Employee Information</h1>
+				<table id="employeeTable" class="table table-hover table-bordered">
+					<thead>
+						<tr style="text-align: center">
+							<th>Employee ID</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Password</th>
+						</tr>
+					</thead>
+				</table>
+				<button id = "listEmployees" style= "background-color: black" 
+				class="btn btn-primary" onclick="showForm()">Show Personal Information</button>
+					
+				<div style = "display: none" id="HEADdiv" class="dropdown">
+					<button style="background-color: black" type="button"
+						class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+						Update Information</button>
+					<div style="background-color: black" class="dropdown-menu"
+						aria-labelledby="dropdownMenuButton">
+						<a onclick="showFormFN()"
+							style="background-color: black; color: white"
+							class="dropdown-item" id=changefirstname> Update First Name</a><br>
+						<a onclick="showFormLN()"
+							style="background-color: black; color: white"
+							class="dropdown-item" id=changelastname> Update Last Name</a><br>
+						<a onclick="showFormEM()"
+							style="background-color: black; color: white"
+							class="dropdown-item" id=changeemail> Update E-mail</a><br>
 						<a onclick="showFormPW()"
-						style="background-color: black; color: white"
-						class="dropdown-item" id=changepassword> Update Password</a>
+							style="background-color: black; color: white"
+							class="dropdown-item" id=changepassword> Update Password</a>
+					</div>
 				</div>
+				<div style="display: none" id="FNdiv">
+					<br> <input type="text" class="form-control"
+						placeholder="New First Name" id="FNform" required /> <br> 
+						<button	id="FNsubmit" style="background-color: black"
+						class="btn btn-primary">Update First Name</button>
+				</div>
+				<div style="display: none" id="LNdiv">
+					<br> <input type="text" class="form-control"
+						placeholder="New Last Name" id="LNform" required /> <br> 
+						<button	id="LNsubmit" style="background-color: black"
+						class="btn btn-primary">Update Last Name</button>
+				</div>
+				<div style="display: none" id="EMdiv">
+					<br> <input type="text" class="form-control"
+						placeholder="New E-mail" id="EMform" required /> <br> 
+						<button	id="EMsubmit" style="background-color: black"
+						class="btn btn-primary">Update E-mail</button>
+				</div>
+				<div style="display: none" id="PWdiv">
+					<br> <input type="text" class="form-control"
+						placeholder="New Password" id="PWform" required /> <br> 
+						<button	id="PWsubmit" style="background-color: black"
+						class="btn btn-primary">Update Password</button>
+				</div> 
+
 			</div>
-
-		</div>
-	</div>
-	
-	<div class="container-fluid text-center">
-		<div style="display: none" id="FNdiv">
-			<form id="changeFN" method="POST" action="#">
-				<!--  CHANGE CHANGE CHANGE CHANGE THE ACTION PLEASEEEEEEEEEEEE -->
-					<br><input type="text" class="form-control"
-						placeholder="New First Name" name="userid" pattern="[0-9]+"
-						required /> <br> <input style="background-color: black" type="submit"
-						class="btn btn-primary" value="Update First Name" onclick="showformFN()" />
-			</form>
-		</div>
-		<div style="display: none" id="LNdiv">
-			<form id="changeFN" method="POST" action="#">
-				<!--  CHANGE CHANGE CHANGE CHANGE THE ACTION PLEASEEEEEEEEEEEE -->
-					<br><input type="text" class="form-control"
-						placeholder="New Last Name" name="userid" pattern="[0-9]+"
-						required /> <br> <input style="background-color: black" type="submit"
-						class="btn btn-primary" value="Update Last Name" onclick="showformLN()" />
-			</form>
-		</div>
-		<div style="display: none" id="EMdiv">
-			<form id="changeFN" method="POST" action="#">
-				<!--  CHANGE CHANGE CHANGE CHANGE THE ACTION PLEASEEEEEEEEEEEE -->
-					<br><input type="text" class="form-control"
-						placeholder="New E-Mail" name="userid" pattern="[0-9]+"
-						required /> <br> <input style="background-color: black" type="submit"
-						class="btn btn-primary" value="Update E-Mail" onclick="showformEN()" />
-			</form>
-		</div>
-		<div style="display: none" id="PWdiv">
-			<form id="changeFN" method="POST" action="#">
-				<!--  CHANGE CHANGE CHANGE CHANGE THE ACTION PLEASEEEEEEEEEEEE -->
-					<br><input type="password" class="form-control"
-						placeholder="New Password" name="userid" pattern="[0-9]+"
-						required /> <br> <input style="background-color: black" type="submit"
-						class="btn btn-primary" value="Update Password" onclick="showformPW()" />
-			</form>
+			<div class="col-sm-2 sidenav"></div>
 		</div>
 	</div>
 
@@ -153,12 +142,20 @@ update information -->
 
 
 
+
+
+
+	<footer class="container-fluid text-center">
+		<p>Kevin Wu 2018</p>
+	</footer>
 
 	<!-- manager specific: approve/deny, view all pending requests, view all resolved requests
 and which manager resolved, view all employees, view reimbursement requests from single -->
 
 	<script type="text/javascript" src="../js/appendTable.js"></script>
 	<script type="text/javascript" src="../js/showForms.js"></script>
+	<script type="text/javascript" src="../js/updateEmployee.js"></script>
+	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

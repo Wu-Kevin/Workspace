@@ -1,6 +1,14 @@
 window.onload = function() {
 	document.getElementById("listEmployees").addEventListener("click",
 			getEmployees);
+	document.getElementById("FNsubmit").addEventListener("click",
+			changeFN);
+	document.getElementById("LNsubmit").addEventListener("click",
+			changeLN);
+	document.getElementById("EMsubmit").addEventListener("click",
+			changeEM);
+	document.getElementById("PWsubmit").addEventListener("click",
+			changePW);
 };
 function getEmployees() {
 	var xhttp = new XMLHttpRequest();
@@ -28,15 +36,10 @@ function createRows(ajaxObject) {
 	if (ajaxObject.length === undefined) {
 		var tr = document.createElement("tr");
 		var td1 = document.createElement("td");			
-		td1.setAttribute("id", "employeeId")
 		var td2 = document.createElement("td");			
-		td2.setAttribute("id", "firstname")
 		var td3 = document.createElement("td");			
-		td3.setAttribute("id", "lastname")
 		var td4 = document.createElement("td");			
-		td4.setAttribute("id", "email")
 		var td5 = document.createElement("td");			
-		td5.setAttribute("id", "password")
 
 		var id = document.createTextNode(ajaxObject.employeeId);
 		var fn = document.createTextNode(ajaxObject.firstname);

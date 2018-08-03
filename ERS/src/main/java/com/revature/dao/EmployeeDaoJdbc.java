@@ -40,10 +40,26 @@ public class EmployeeDaoJdbc implements EmployeeDao{
 			cs.execute();
 			
 		} catch (SQLException e) {
-			LogUtil.logger.warn("Exception creating a new customer", e);
+			LogUtil.logger.warn("Exception creating a new employee", e);
 		}
 	}
 
+	@Override
+	public void update(Employee employee) {
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "UPDATE EMPLOYEES SET PASSWORD = ?, FIRSTNAME = ?,	LASTNAME = ?, EMAIL = ?	WHERE EMPLOYEE_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, employee.getPassword());
+			ps.setString(2, employee.getFirstname());
+			ps.setString(3, employee.getLastname());
+			ps.setString(4, employee.getEmail());
+			ps.setInt(5, employee.getEmployeeId());
+			ps.execute();
+			
+		} catch (SQLException e) {
+			LogUtil.logger.warn("Exception updating a employee", e);
+		}
+	}
 
 	@Override
 	public Employee select(Employee employee) {
@@ -66,7 +82,7 @@ public class EmployeeDaoJdbc implements EmployeeDao{
 						);
 			}
 		} catch (SQLException e) {
-			LogUtil.logger.warn("Exception finding an existing user", e);
+			LogUtil.logger.warn("Exception finding an existing employee", e);
 
 		}
 		return new Employee();
@@ -95,10 +111,13 @@ public class EmployeeDaoJdbc implements EmployeeDao{
 
 			return customerList;
 		} catch (SQLException e) {
-			LogUtil.logger.warn("Exception selecting all customers", e);
+			LogUtil.logger.warn("Exception selecting all employees", e);
 		} 
 		return new ArrayList<>();
 	}
+
+
+
 
 
 

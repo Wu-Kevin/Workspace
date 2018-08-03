@@ -23,6 +23,9 @@ public class EmployeeService {
 		EmployeeDaoJdbc.getEmployeeDaoJdbc().insert(employee);
 	}
 	
+	public void updateEmployee(Employee employee) {
+		EmployeeDaoJdbc.getEmployeeDaoJdbc().update(employee);
+	}
 	public Employee loginEmployee(Employee employee) {
 		return EmployeeDaoJdbc.getEmployeeDaoJdbc().select(employee);
 	}

@@ -15,8 +15,17 @@ public class RequestHelper {
 			return ListController.listEmployee(request, response);
 			
 		case "/ERS/html/updateEmployeeFN.ajax":
-			UpdateEmployeeController.updateEmployeeFN(request, response);
-			
+			return UpdateEmployeeController.updateEmployeeFN(request, response);
+		
+		case "/ERS/html/updateEmployeeLN.ajax":
+			return UpdateEmployeeController.updateEmployeeLN(request, response);
+		
+		case "/ERS/html/updateEmployeeEM.ajax":
+			return UpdateEmployeeController.updateEmployeeEM(request, response);
+		
+		case "/ERS/html/updateEmployeePW.ajax":
+			return UpdateEmployeeController.updateEmployeePW(request, response);
+		
 		default:
 			return new AjaxMessage(FinalUtil.NOT_IMPLEMENTED);
 		}
