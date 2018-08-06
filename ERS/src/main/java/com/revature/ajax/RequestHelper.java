@@ -13,8 +13,11 @@ public class RequestHelper {
 	
 	public static Object process(HttpServletRequest request, HttpServletResponse response) {
 		switch(request.getRequestURI()) {
-		case "/ERS/html/listEmployees.ajax":
+		case "/ERS/html/listEmployee.ajax":
 			return ListController.listEmployee(request, response);
+			
+		case "/ERS/html/listAllEmployees.ajax":
+			return ListController.listAllEmployees(request, response);
 			
 		case "/ERS/html/updateEmployeeFN.ajax":
 			return UpdateEmployeeController.updateEmployeeFN(request, response);
@@ -30,9 +33,18 @@ public class RequestHelper {
 		
 		case "/ERS/html/listReimbursements.ajax":
 			return ReimbursementListController.listReimbursement(request, response);
+			
+		case "/ERS/html/selectReimbursementById.ajax":
+			return ReimbursementListController.listReimbursementById(request, response);
 		
+		case "/ERS/html/listAllReimbursements.ajax":
+			return ReimbursementListController.listAllReimbursements(request, response);
+			
 		case "/ERS/html/insertReimbursement.ajax":
 			return InsertReimbursementController.insertReimbursement(request, response);
+		
+		case "/ERS/html/changeReimbursements.ajax":
+			ReimbursementListController.changeReimbursements(request, response);
 			
 		default:
 			return new AjaxMessage(FinalUtil.NOT_IMPLEMENTED);

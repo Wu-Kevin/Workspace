@@ -9,12 +9,11 @@ public class ListController {
 
 	public static Object listEmployee(HttpServletRequest request, HttpServletResponse response) {
 		
-		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee") ;
-		if (loggedEmployee.getIsmanager() == 0) {
-			return EmployeeService.getEmployeeService().loginEmployee(loggedEmployee);
-		}
-		else { 
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+		return EmployeeService.getEmployeeService().loginEmployee(loggedEmployee);
+	}
+	
+	public static Object listAllEmployees(HttpServletRequest request, HttpServletResponse response) {
 			return EmployeeService.getEmployeeService().listEmployees();
-		}
 	}
 }

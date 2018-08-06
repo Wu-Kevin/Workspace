@@ -1,8 +1,6 @@
 window.onload = function() {
 	document.getElementById("listEmployee").addEventListener("click",
 			getEmployee);
-	document.getElementById("listAllEmployees").addEventListener("click",
-			getAllEmployees);
 	document.getElementById("FNsubmit").addEventListener("click", changeFN);
 	document.getElementById("LNsubmit").addEventListener("click", changeLN);
 	document.getElementById("EMsubmit").addEventListener("click", changeEM);
@@ -11,15 +9,12 @@ window.onload = function() {
 			getReimbursements);
 	document.getElementById("showReimPending").addEventListener("click",
 			getAllPendingReimbursements);
-	document.getElementById("submitApproval").addEventListener("click",
-			changeReimbursements);
-	document.getElementById("submitId").addEventListener("click", showReimById);
 	document.getElementById("showReimApproved").addEventListener("click",
 			getAllApprovedReimbursements);
 	document.getElementById("insertReim").addEventListener("click",
 			insertReimbursement);
 	document.getElementById("refreshPending").addEventListener("click", refreshPendingTable);
-	document.getElementById("refreshApproved").addEventListener("click", refreshApprovedTable);
+
 };
 
 function refreshApprovedTable() {
@@ -305,12 +300,10 @@ function getAllPendingReimbursements() {
 		}
 	}
 	xhttp.open("POST",
-			"http://localhost:8181/ERS/html/listAllReimbursements.ajax", true);
+			"http://localhost:8181/ERS/html/listReimbursements.ajax", true);
 	xhttp.send();
 	let newx = document.getElementById("showReimPending");
 	newx.style.display = "none";
-	let x = document.getElementById("changeId");
-	x.style.display = "block";
 }
 
 function changeReimbursements() {
@@ -338,12 +331,10 @@ function getAllApprovedReimbursements() {
 		}
 	}
 	xhttp.open("POST",
-			"http://localhost:8181/ERS/html/listAllReimbursements.ajax", true);
+			"http://localhost:8181/ERS/html/listReimbursements.ajax", true);
 	xhttp.send();
 	let newx = document.getElementById("showReimApproved");
 	newx.style.display = "none";
-	let newy = document.getElementById("showRefresh");
-	newy.style.display = "block";
 }
 
 function createReimbursementRows(ajaxObject) {
@@ -436,14 +427,12 @@ function allPendingReimbursements(ajaxObject) {
 		let td2 = document.createElement("td");
 		let td3 = document.createElement("td");
 		let td4 = document.createElement("td");
-		let td5 = document.createElement("td");
 
 		if ((ajaxObject.approvalid == "0")) {
 			let id = document.createTextNode(ajaxObject.reimbursementid);
 			let am = document.createTextNode("$" + ajaxObject.amount);
 			let rt = document.createTextNode(ajaxObject.rationale);
 			let app = document.createTextNode("Pending");
-			let who = document.createTextNode(ajaxObject.employeeId);
 			
 			td1.appendChild(id);
 			tr.appendChild(td1);
@@ -457,8 +446,6 @@ function allPendingReimbursements(ajaxObject) {
 			td4.appendChild(app);
 			tr.appendChild(td4);
 			
-			td5.appendChild(who);
-			tr.appendChild(td5);
 
 			tbody.appendChild(tr);
 			table.appendChild(tbody);
@@ -472,7 +459,6 @@ function allPendingReimbursements(ajaxObject) {
 			let td2 = document.createElement("td");
 			let td3 = document.createElement("td");
 			let td4 = document.createElement("td");
-			let td5 = document.createElement("td");
 
 
 			if ((ajaxObject[i].approvalid == "0")) {
@@ -480,7 +466,6 @@ function allPendingReimbursements(ajaxObject) {
 				let am = document.createTextNode("$" + ajaxObject[i].amount);
 				let rt = document.createTextNode(ajaxObject[i].rationale);
 				let app = document.createTextNode("Pending");
-				let who = document.createTextNode(ajaxObject[i].employeeId);
 
 				td1.appendChild(id);
 				tr.appendChild(td1);
@@ -494,9 +479,6 @@ function allPendingReimbursements(ajaxObject) {
 				td4.appendChild(app);
 				tr.appendChild(td4);
 
-				td5.appendChild(who);
-				tr.appendChild(td5);
-				
 				tbody.appendChild(tr);
 				table.appendChild(tbody);
 			} else {

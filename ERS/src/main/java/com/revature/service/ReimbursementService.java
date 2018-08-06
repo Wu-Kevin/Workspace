@@ -32,4 +32,8 @@ private static ReimbursementService reimbursementService;
 	public List<Reimbursement> selectAll() {
 		return ReimbursementDaoJdbc.getReimbursementDaoJdbc().selectAll();
 	}
+	
+	public void changeReimbursement(int reimbursementid, int managerid, int approval) {
+		ReimbursementDaoJdbc.getReimbursementDaoJdbc().update(reimbursementid, managerid, approval);
+	}
 }
